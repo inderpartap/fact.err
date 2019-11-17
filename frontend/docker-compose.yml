@@ -2,6 +2,11 @@ web:
   build: .
   command: python -u server.py
   ports: 
-    -'5000:5000'
+    - '5000:5000'
   volumes:
     - .:/frontend
+  links: 
+    - db
+db:
+  image: mongo:3.0.2
+  

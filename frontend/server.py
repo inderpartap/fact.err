@@ -6,17 +6,17 @@ from pymongo import MongoClient
 app = Flask(__name__)
 
 # app.config["MONGO_URI"]
-mongo = MongoClient("mongodb+srv://admin:admin@facterrcluster-v12sw.mongodb.net/test?retryWrites=true&w=majority")
+# mongo = MongoClient("mongodb+srv://admin:admin@facterrcluster-v12sw.mongodb.net/test?retryWrites=true&w=majority")
 # mongo = PyMongo(app)
-db = mongo['news']
-collection = db['newsData']
+# db = mongo['news']
+# collection = db['newsData']
 
-post = {"_id": 0, "title": "this is news title", "body": "body of news"}
+# post = {"_id": 0, "title": "this is news title", "body": "body of news"}
 # collection.insert_one(post)
 
-result = collection.find({"title": "this is news title"})
-for i in result:
-	print (i)
+# result = collection.find({"title": "this is news title"})
+# for i in result:
+# 	print (i)
 
 @app.route("/")
 @app.route("/dashboard")
@@ -26,6 +26,9 @@ def index():
 
 @app.route("/news")
 def news():
+	mongo = MongoClient("mongodb+srv://admin:admin@facterrcluster-v12sw.mongodb.net/test?retryWrites=true&w=majority")
+	db = mongo['news']
+	collection = db['newsData']
 	return render_template("news.html", message="News Feed");  
 
 @app.route("/search")
