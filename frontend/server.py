@@ -30,8 +30,7 @@ def fetch_real_news():
 	data_dict['description'] = dict['articles'][0]['content']
 	data_dict['url'] = dict['articles'][0]['url']
 	data_dict['publishedAt'] = dict['articles'][0]['publishedAt']
-	collection.insert_one(data_dict)
-
+	collection.insert_one(data_dict) 
 
 schedule.add_interval_job(fetch_real_news, minutes=1)
 
