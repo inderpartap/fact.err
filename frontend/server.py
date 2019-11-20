@@ -21,25 +21,23 @@ def fetch_real_news():
 			'language=en&'
 			'category=general&'
 			'pageSize=1&'
+			'page=1&'
 			'apiKey=944fd308bb7a49798093550409b3c2b9')
 	response = requests.get(url)
 	response_dict =response.json()
 	
 	data_dict = {}
-	data_dict['title'] = dict['articles'][0]['title']
-	data_dict['description'] = dict['articles'][0]['content']
-	data_dict['url'] = dict['articles'][0]['url']
-	data_dict['publishedAt'] = dict['articles'][0]['publishedAt']
-	collection.insert_one(data_dict) 
+	article_dict = response_dict['articles'][0]
+	data_dict['title'] = article_dict['title']
+	data_dict['description'] = article_dict['description']
+	data_dict['url'] = article_dict['url']
+	data_dict['publishedAt'] = article_dict['publishedAt']
+	print (data_dict)
+	query = {'title':'data_dict["title"]'}
+	collection.update_one(query, data_dict, upsert=True);
+	# collection.insert_one(data_dict) 
 
 schedule.add_interval_job(fetch_real_news, minutes=1)
-
-# post = {"_id": 0, "title": "this is news title", "body": "body of news"}
-# collection.insert_one(post)
-
-# result = collection.find({"title": "this is news title"})
-# for i in result:
-# 	print (i)
 
 @app.route("/")
 @app.route("/dashboard")
@@ -49,7 +47,8 @@ def index():
 
 @app.route("/news")
 def news():
-	return render_template("news.html", message="News Feed");  
+	results = collection.find({})
+	return render_template("news.html", message="News Feed", news_list = results);  
 
 @app.route("/search")
 def search():
