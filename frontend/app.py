@@ -14,6 +14,7 @@ collection = db['newsData']
 schedule = Scheduler() # Scheduler object
 schedule.start()
 
+
 def fetch_real_news():
 	url = ('https://newsapi.org/v2/top-headlines?'
 			'country=ca&'
@@ -31,9 +32,9 @@ def fetch_real_news():
 	data_dict['description'] = article_dict['description']
 	data_dict['url'] = article_dict['url']
 	data_dict['publishedAt'] = article_dict['publishedAt']
-	print (data_dict)
-	query = {'title':'data_dict["title"]'}
-	collection.update_one(query, data_dict, upsert=True);
+	# print (data_dict)
+	collection.update_one(data_dict, {'$set': data_dict }, upsert=True);
+	# collection.update(query, data_dict, upsert=True);
 	# collection.insert_one(data_dict) 
 
 schedule.add_interval_job(fetch_real_news, minutes=1)
