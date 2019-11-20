@@ -14,7 +14,6 @@ collection = db['newsData']
 schedule = Scheduler() # Scheduler object
 schedule.start()
 
-
 def fetch_real_news():
 	url = ('https://newsapi.org/v2/top-headlines?'
 			'country=ca&'
