@@ -15,7 +15,7 @@ testDF= pd.read_csv("test.csv")
 
 
 To predict - run :
--model.predict(testdata)
+-model.predict('TestPredict')
 
 
 
