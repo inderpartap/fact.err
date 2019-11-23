@@ -1,4 +1,4 @@
-requirements- install tensorflow
+requirements- install tensorflow, pickle
 
 to load model
 
@@ -7,6 +7,11 @@ to load model
 
 --read test file 
 testDF= pd.read_csv("test.csv")
+
+
+--read tokenizer using the following command
+with open('tokenizer.pickle', 'rb') as handle:
+	tokenizer = pickle.load(handle)
 
 -- convert into sequence or word vector by converting into embeddings, using the given dimensions
 
