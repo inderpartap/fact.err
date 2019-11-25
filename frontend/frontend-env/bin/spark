@@ -1,3 +1,0 @@
-#!/Users/inderpartap/SFU/CMPT732/Project/Frontend/frontend-env/bin/python3
-from spark import spark_admin
-spark_admin.main()
