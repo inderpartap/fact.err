@@ -17,15 +17,17 @@ import os
 import re
 import sys
 
-assert sys.version_info >= (3, 5) # make sure we have Python 3.5+
+#assert sys.version_info >= (3, 5) # make sure we have Python 3.5+
 from pyspark.sql import SparkSession, functions, types
 from pyspark.sql.functions import udf
 spark = SparkSession.builder.appName('DF processing').getOrCreate()
-assert spark.version >= '2.3' # make sure we have Spark 2.3+
+#assert spark.version >= '2.3' # make sure we have Spark 2.3+
 spark.sparkContext.setLogLevel('WARN')
 sc = spark.sparkContext
 
 stemmer = PorterStemmer()
+nltk.download('wordnet')
+nltk.download('stopwords')
 
 
 def main():
@@ -66,27 +68,30 @@ def main():
 
 	test_schema = types.StructType([types.StructField('title', types.StringType()),types.StructField('text', types.StringType())])
 
-	fake_test_dataset = spark.read.csv('fake-news-test',schema=test_schema,header=True)
+	#fake_test_dataset = spark.read.csv('s3://projfakenews/fake-news-test',schema=test_schema,header=True)
+
+	#'xa0e'
 	
-	fake_dataset = spark.read.format("csv").option("header", "true").option("delimiter", "\t").option("multiLine", "true").load("fake.tsv")
-	fake_test_dataset.show()
-	fake_dataset.show()
+	fake_dataset = spark.read.format("csv").option("header", "true").option("delimiter", "\t").option("multiLine", "true").load("s3://projfakenews/fake.tsv")
+	#fake_test_dataset.show()
+	#fake_dataset.show()
 
 	fake_dataset = fake_dataset.drop('ord_in_thread','thread_title','author','published','uuid','language','crawled','main_img_url','site_url','participants_count','replies_count','likes','comments','shares','type','spam_score','domain_rank','country')
 
 
 	#scraped_fake_dataset = fake_test_dataset.select(functions.col("headline").alias("title"),functions.col("description").alias("text")) 
 
-	fake_appended_dataset =fake_dataset.union(fake_test_dataset)
+	#fake_appended_dataset =fake_dataset.union(fake_test_dataset)
+	fake_appended_dataset =fake_dataset
 
 	#1 unreliable, 0 reliable
 	fake_appended_dataset = fake_appended_dataset.withColumn("label",functions.lit(1))
 
 
-	fake_appended_dataset.show()
+	#fake_appended_dataset.show()
 
 
-	kaggle_train = spark.read.format("csv").option("header", "true").option("delimiter", "\t").option("multiLine", "true").load("fake-news_kaggle/train.tsv")
+	kaggle_train = spark.read.format("csv").option("header", "true").option("delimiter", "\t").option("multiLine", "true").load("s3://projfakenews/fake-news_kaggle/train.tsv")
 
 
 	kaggle_train = kaggle_train.drop('author','id')
@@ -124,7 +129,7 @@ def main():
 	#appended_data = appended_data.select(word_lemmatizer_udf("title").alias("title"),word_lemmatizer_udf("text").alias("text"),"label")
 
 
-
+	appended_data.write.csv("s3://projfakenews/ProcessedDatawithoutStemming", mode='overwrite')
 	#stemming
 	word_stemmer_udf = udf(word_stemmer, types.StringType())
 
@@ -138,7 +143,7 @@ def main():
 
 	appended_data.show()
 
-	appended_data.write.csv("ProcessedData", mode='overwrite')
+	appended_data.write.csv("s3://projfakenews/ProcessedData", mode='overwrite')
 
 	#remove punctuations
 
