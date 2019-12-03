@@ -40,6 +40,7 @@ $ make run
 
 #### Contributers
 
+- [Inderpartap Cheema (inderpartap)](https://github.com/inderpartap) : **App Creation and DataBase Management**
 - [Najeeb Qazi (najq)](https://github.com/najq) : **Data Cleaning**
 - [Ishaan Sahay (VWJF)](https://github.com/VWJF): **Model Creation**
 - [Sachin (sachwithgithub)](https://github.com/sachwithgithub): **Model Creation**
