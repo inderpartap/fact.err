@@ -28,6 +28,7 @@ $ virtualenv env              # Create virtual environment
 $ source env/bin/activate     # Change default python to virtual one
 (env)$ git clone https://github.com/inderpartap/fact.err.git
 (env)$ cd fact.err
+(env)$ git submodule update --init --recursive
 (env)$ pip install -r requirements.txt
 ```
 
