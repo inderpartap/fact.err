@@ -28,21 +28,23 @@ $ virtualenv env              # Create virtual environment
 $ source env/bin/activate     # Change default python to virtual one
 (env)$ git clone https://github.com/inderpartap/fact.err.git
 (env)$ cd fact.err
+(env)$ git submodule update --init --recursive
 (env)$ pip install -r requirements.txt
 ```
 
 #### Running it
 
 ```sh
-$ make run
+$ python app.py
 ```
 
 
 #### Contributers
 
-- [Najeeb Qazi (najq)](https://github.com/najq) : **Data Cleaning**
-- [Ishaan Sahay (VWJF)](https://github.com/VWJF): **Model Creation**
-- [Sachin (sachwithgithub)](https://github.com/sachwithgithub): **Model Creation**
+- [Inderpartap Cheema (inderpartap)](https://github.com/inderpartap) : **App Creation, Visualizations and DataBase Management**
+- [Najeeb Qazi (najq)](https://github.com/najq) : **Model Creation with Deep Learning models and Distributed Processing, Visualizations**
+- [Ishaan Sahay (VWJF)](https://github.com/VWJF): **AWS Management, ETL and Data Collection**
+- [Sachin (sachwithgithub)](https://github.com/sachwithgithub): **AWS Management, EMR Cluster Configuration and Data Collection**
 
 ***
 
