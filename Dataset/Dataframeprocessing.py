@@ -72,7 +72,7 @@ def main():
 
 	#'xa0e'
 	
-	fake_dataset = spark.read.format("csv").option("header", "true").option("delimiter", "\t").option("multiLine", "true").load("s3://projfakenews/fake.tsv")
+	fake_dataset = spark.read.format("csv").option("header", "true").option("delimiter", "\t").option("multiLine", "true").load("s3://projfakenews/fake")
 	#fake_test_dataset.show()
 	#fake_dataset.show()
 

@@ -60,7 +60,7 @@ def make_model():
 
 def evaluate_model():
 
-    model = tf.keras.models.load_model('/content/gdrive/My Drive/ColabData/BILSTM_300_CPU_snopes_2.0')
+    #model = tf.keras.models.load_model('/content/gdrive/My Drive/ColabData/BILSTM_300_CPU_snopes_2.0')
     df = pd.read_csv('/content/gdrive/My Drive/ColabData/kaggle_train.csv')
     df = df.drop(columns=['id','author'])
     df = df.dropna()
