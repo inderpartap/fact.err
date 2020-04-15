@@ -2,7 +2,8 @@
 
 [![Requirements Status](https://requires.io/github/inderpartap/facterr-frontend/requirements.svg?branch=master)](https://requires.io/github/inderpartap/facterr-frontend/requirements/?branch=master)
 <br>
-[![Build Status](https://travis-ci.com/inderpartap/facterr-frontend.svg?branch=master)](https://travis-ci.com/inderpartap/facterr-frontend)
+[![Build Status](https://travis-ci.com/inderpartap/facterr-frontend.svg?branch=master)](https://travis-ci.com/inderpartap/facterr-frontend)<br>
+![Repo Size](https://img.shields.io/github/repo-size/Inderpartap/fact.err)
 
 > Detecting fake news using **Neural Networks**
 
