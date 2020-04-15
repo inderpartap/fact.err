@@ -40,7 +40,11 @@ def main():
 
 	data_schema = types.StructType([types.StructField('title', types.StringType()),types.StructField('text', types.StringType()),types.StructField('label', types.IntegerType())])
 
+<<<<<<< HEAD
 	datadf = spark.read.csv("s3://projfakenews/ProcessedDatawithoutStemming",schema=data_schema)
+=======
+	datadf = spark.read.csv("s3://projfakenews/ProcessedData",schema=data_schema)
+>>>>>>> 8aad17778d182a78f497ccfa5e8a9f9d95093c66
 
 	datadf.show()
 
